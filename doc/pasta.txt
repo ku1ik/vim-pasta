@@ -1,0 +1,8 @@
+*pasta.txt*  Pasting with indentation adjusted to paste destination
+
+Author:  Marcin Kulik <http://ku1ik.com/>
+License: Same terms as Vim itself (see |license|)
+
+TODO
+
+ vim:tw=78:et:ft=help:norl:
