@@ -11,18 +11,33 @@ function! s:normal_pasta(p, o)
   if (getregtype() ==# "V")
     exe "normal! " . a:o . "\<space>\<bs>\<esc>\"" . v:register . "]pk\"_dd"
   else
-    exe "normal! \"" . v:register . a:p
+    exe "normal! " . v:count1 . '"' . v:register . a:p
   endif
 endfunction
 
-function! s:visual_pasta() range
-  exe "normal! gv\"_c\<space>\<bs>\<esc>\"" . v:register . "]pk\"_dd"
+function! s:visual_pasta()
+  if (visualmode() ==# "V")
+    if (getregtype() ==# "V")
+      exe "normal! gv\"_c\<space>\<bs>\<esc>\"" . v:register . "]pk\"_dd"
+    else
+      exe "normal! gv\"_c\<space>\<bs>\<esc>\"" . v:register . "]p"
+    endif
+  else
+    " workaround strange Vim behavior (""p is no-op in visual mode)
+    if (v:register == '"')
+      let reg = ""
+    else
+      let reg = "\"" . v:register
+    endif
+
+    exe "normal! gv" . v:count1 . reg . "p"
+  endif
 endfunction
 
-nnoremap <silent> P :call <SID>normal_pasta('P', 'O')<CR>
-nnoremap <silent> p :call <SID>normal_pasta('p', 'o')<CR>
+nnoremap <silent> P :<C-U>call <SID>normal_pasta('P', 'O')<CR>
+nnoremap <silent> p :<C-U>call <SID>normal_pasta('p', 'o')<CR>
 
-vnoremap <silent> P :call <SID>visual_pasta()<CR>
-vnoremap <silent> p :call <SID>visual_pasta()<CR>
+vnoremap <silent> P :<C-U>call <SID>visual_pasta()<CR>
+vnoremap <silent> p :<C-U>call <SID>visual_pasta()<CR>
 
 " vim:set sw=2 sts=2:
