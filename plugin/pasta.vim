@@ -15,7 +15,7 @@ function! s:normal_pasta(p, o)
   endif
 endfunction
 
-function! s:visual_pasta()
+function! s:visual_pasta() range
   exe "normal! gv\"_c\<space>\<bs>\<esc>\"" . v:register . "]pk\"_dd"
 endfunction
 
