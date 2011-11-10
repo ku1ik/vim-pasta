@@ -9,7 +9,7 @@ let g:loaded_pasta = 1
 
 function! s:normal_pasta(p, o)
   if (getregtype() ==# "V")
-    exe "normal! " . a:o . "\<space>\<bs>\<esc>\"" . v:register . "]pk\"_dd"
+    exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . "]pk\"_dd"
   else
     exe "normal! " . v:count1 . '"' . v:register . a:p
   endif
