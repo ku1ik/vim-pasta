@@ -9,7 +9,7 @@ let g:loaded_pasta = 1
 
 function! s:normal_pasta(p, o)
   if (getregtype() ==# "V")
-    exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . "]pk\"_dd"
+    exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']pk"_dd'
   else
     exe "normal! " . v:count1 . '"' . v:register . a:p
   endif
@@ -18,9 +18,9 @@ endfunction
 function! s:visual_pasta()
   if (visualmode() ==# "V")
     if (getregtype() ==# "V")
-      exe "normal! gv\"_c\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . "]pk\"_dd"
+      exe "normal! gv\"_c\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']pk"_dd'
     else
-      exe "normal! gv\"_c\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . "]p"
+      exe "normal! gv\"_c\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']p'
     endif
   else
     " workaround strange Vim behavior (""p is no-op in visual mode)
