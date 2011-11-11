@@ -24,11 +24,7 @@ function! s:visual_pasta()
     endif
   else
     " workaround strange Vim behavior (""p is no-op in visual mode)
-    if (v:register == '"')
-      let reg = ''
-    else
-      let reg = '"' . v:register
-    endif
+    let reg = v:register == '"' ? '' : '"' . v:register
 
     exe "normal! gv" . v:count1 . reg . "p"
   endif
