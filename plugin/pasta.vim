@@ -25,9 +25,9 @@ function! s:visual_pasta()
   else
     " workaround strange Vim behavior (""p is no-op in visual mode)
     if (v:register == '"')
-      let reg = ""
+      let reg = ''
     else
-      let reg = "\"" . v:register
+      let reg = '"' . v:register
     endif
 
     exe "normal! gv" . v:count1 . reg . "p"
