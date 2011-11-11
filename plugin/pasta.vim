@@ -7,7 +7,7 @@ if exists("g:loaded_pasta") || &cp || v:version < 700
 endif
 let g:loaded_pasta = 1
 
-function! s:normal_pasta(p, o)
+function! s:NormalPasta(p, o)
   if (getregtype() ==# "V")
     exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']pk"_dd'
   else
@@ -15,7 +15,7 @@ function! s:normal_pasta(p, o)
   endif
 endfunction
 
-function! s:visual_pasta()
+function! s:VisualPasta()
   if (visualmode() ==# "V")
     if (getregtype() ==# "V")
       exe "normal! gv\"_c\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']pk"_dd'
@@ -30,10 +30,18 @@ function! s:visual_pasta()
   endif
 endfunction
 
-nnoremap <silent> P :<C-U>call <SID>normal_pasta('P', 'O')<CR>
-nnoremap <silent> p :<C-U>call <SID>normal_pasta('p', 'o')<CR>
+nnoremap <silent> <Plug>BeforePasta :<C-U>call <SID>NormalPasta('P', 'O')<CR>
+nnoremap <silent> <Plug>AfterPasta :<C-U>call <SID>NormalPasta('p', 'o')<CR>
+xnoremap <silent> <Plug>VisualPasta :<C-U>call <SID>VisualPasta()<CR>
 
-vnoremap <silent> P :<C-U>call <SID>visual_pasta()<CR>
-vnoremap <silent> p :<C-U>call <SID>visual_pasta()<CR>
+if maparg('p') ==# ''
+  nmap p <Plug>AfterPasta
+  xmap p <Plug>VisualPasta
+endif
+
+if maparg('P') ==# ''
+  nmap P <Plug>BeforePasta
+  xmap P <Plug>VisualPasta
+endif
 
 " vim:set sw=2 sts=2:
