@@ -31,18 +31,29 @@ function! s:VisualPasta()
 endfunction
 
 function! s:SetupPasta()
-  if (&ft != "python" && &ft != "coffee")
-    if maparg('p') ==# ''
-      nmap <buffer> p <Plug>AfterPasta
-      xmap <buffer> p <Plug>VisualPasta
+  if exists("g:pasta_enabled_filetypes")
+    if index(g:pasta_enabled_filetypes, &ft) == -1
+      return
     endif
+  elseif exists("g:pasta_disabled_filetypes") &&
+       \ index(g:pasta_disabled_filetypes, &ft) != -1
+    return
+  endif
 
-    if maparg('P') ==# ''
-      nmap <buffer> P <Plug>BeforePasta
-      xmap <buffer> P <Plug>VisualPasta
-    endif
+  if maparg('p') ==# ''
+    nmap <buffer> p <Plug>AfterPasta
+    xmap <buffer> p <Plug>VisualPasta
+  endif
+
+  if maparg('P') ==# ''
+    nmap <buffer> P <Plug>BeforePasta
+    xmap <buffer> P <Plug>VisualPasta
   endif
 endfunction
+
+if !exists("g:pasta_disabled_filetypes")
+  let g:pasta_disabled_filetypes = ["python", "coffee"]
+endif
 
 nnoremap <silent> <Plug>BeforePasta :<C-U>call <SID>NormalPasta('P', 'O')<CR>
 nnoremap <silent> <Plug>AfterPasta :<C-U>call <SID>NormalPasta('p', 'o')<CR>
