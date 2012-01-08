@@ -56,7 +56,7 @@ it works quite well. However when you're pasting hand indented code like this:
       barbaz: 4
     }
 
-it re-indents it be like this:
+it re-indents it to be like this:
 
     obj = {
       a: 1,
