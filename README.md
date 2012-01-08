@@ -12,21 +12,21 @@ Basically it opens new, properly indented line (with `o` or `O`) in the place
 you're pasting to then it pastes the text with `]p`. The result is nicely
 indented code with relative indentation between pasted lines preserved.
 
-### Why is it better than `]p` alone?
+### Why is it better than ]p alone?
 
-### Why is it better than `nnoremap <leader>p p\`[v\`]=` ?
+### Why is it better than nnoremap <leader>p p\`[v\`]= ?
 
 ## Installation
 
 * With [pathogen.vim](https://github.com/tpope/vim-pathogen):
 
-      cd ~/.vim/bundle
-      git clone git://github.com/sickill/vim-pasta.git
+        cd ~/.vim/bundle
+        git clone git://github.com/sickill/vim-pasta.git
 
 * With [Vundle](https://github.com/gmarik/vundle):
 
-      " .vimrc
-      Bundle 'sickill/vim-pasta'
+        " .vimrc
+        Bundle 'sickill/vim-pasta'
 
 ## Usage
 
