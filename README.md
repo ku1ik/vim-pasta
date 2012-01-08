@@ -14,7 +14,58 @@ indented code with relative indentation between pasted lines preserved.
 
 ### Why is it better than ]p alone?
 
+`]p` (and `]P`) adjusts indentation to the indentation of current line.
+Consider following code:
+
+    1  if jola
+    2    misio
+    3  end
+
+If you paste with `]p` when cursor is in line 1 (`if jola`) you get it pasted
+wrong:
+
+    1  if jola
+    2  <first pasted text>
+    3    misio
+    4  end
+
+Now, if you paste with `]P` when cursor is in line 4 (`end`) you also get it
+pasted wrong:
+
+    1  if jola
+    2  <first pasted text>
+    3    misio
+    4  <second pasted text>
+    5  end
+
+vim-pasta takes care of it.
+
 ### Why is it better than nnoremap <leader>p p\`[v\`]= ?
+
+You can achieve "near-pasta experience" with following in you .vimrc:
+
+    nnoremap <leader>p p`[v`]=
+
+It pastes, visually selects pasted text and then re-indents it. In most cases
+it works quite well. However when you're pasting hand indented code like this:
+
+    obj = {
+           a: 1,
+           b: 2,
+         foo: 3,
+      barbaz: 4
+    }
+
+it re-indents it be like this:
+
+    obj = {
+      a: 1,
+      b: 2,
+      foo: 3,
+      barbaz: 4
+    }
+
+I hate when it happens. vim-pasta takes care of it.
 
 ## Installation
 
