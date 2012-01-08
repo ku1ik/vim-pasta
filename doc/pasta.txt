@@ -15,7 +15,7 @@ indented code with relative indentation between pasted lines preserved.
 
 CONFIGURATION                                   *pasta-config*
 
-By default pasta is disabled for python and coffeescript because
+By default pasta is disabled for python, coffeescript and markdown because
 syntax of these languages relies on indentation and desired indentation for
 new lines can't be easily computed from existing code.
 
