@@ -1,6 +1,6 @@
 " pasta.vim - Pasting with indentation adjusted to paste destination"
 " Author:     Marcin Kulik <http://ku1ik.com/>
-" Version:    0.1
+" Version:    0.2
 
 if exists("g:loaded_pasta") || &cp || v:version < 700
   finish
@@ -30,18 +30,26 @@ function! s:VisualPasta()
   endif
 endfunction
 
+function! s:SetupPasta()
+  if (&ft != "python" && &ft != "coffee")
+    if maparg('p') ==# ''
+      nmap <buffer> p <Plug>AfterPasta
+      xmap <buffer> p <Plug>VisualPasta
+    endif
+
+    if maparg('P') ==# ''
+      nmap <buffer> P <Plug>BeforePasta
+      xmap <buffer> P <Plug>VisualPasta
+    endif
+  endif
+endfunction
+
 nnoremap <silent> <Plug>BeforePasta :<C-U>call <SID>NormalPasta('P', 'O')<CR>
 nnoremap <silent> <Plug>AfterPasta :<C-U>call <SID>NormalPasta('p', 'o')<CR>
 xnoremap <silent> <Plug>VisualPasta :<C-U>call <SID>VisualPasta()<CR>
 
-if maparg('p') ==# ''
-  nmap p <Plug>AfterPasta
-  xmap p <Plug>VisualPasta
-endif
-
-if maparg('P') ==# ''
-  nmap P <Plug>BeforePasta
-  xmap P <Plug>VisualPasta
-endif
+augroup vim_pasta
+  au FileType * call <SID>SetupPasta()
+augroup END
 
 " vim:set sw=2 sts=2:
