@@ -52,7 +52,7 @@ function! s:SetupPasta()
 endfunction
 
 if !exists("g:pasta_disabled_filetypes")
-  let g:pasta_disabled_filetypes = ["python", "coffee"]
+  let g:pasta_disabled_filetypes = ["python", "coffee", "markdown"]
 endif
 
 nnoremap <silent> <Plug>BeforePasta :<C-U>call <SID>NormalPasta('P', 'O')<CR>
