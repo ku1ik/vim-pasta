@@ -67,6 +67,10 @@ it re-indents it to be like this:
 
 I hate when it happens. vim-pasta takes care of it.
 
+Additionally vim-pasta detects type of visual selection that was used for
+yanking and does its indenting magic only for linewise selections (VISUAL LINE),
+contrary to above mapping.
+
 ## Installation
 
 * With [pathogen.vim](https://github.com/tpope/vim-pathogen):
