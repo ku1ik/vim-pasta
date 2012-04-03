@@ -9,7 +9,16 @@ let g:loaded_pasta = 1
 
 function! s:NormalPasta(p, o)
   if (getregtype() ==# "V")
-    exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']pk"_dd'
+    exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']p'
+    " Save the `[ and `] marks (point to the last modification)
+    let first = getpos("'[")
+    let last  = getpos("']")
+    normal! k"_dd
+    " Compensate the line we have just deleted
+    let first[1] -= 1
+    let last[1]  -= 1
+    call setpos("'[", first)
+    call setpos("']", last)
   else
     exe "normal! " . v:count1 . '"' . v:register . a:p
   endif
