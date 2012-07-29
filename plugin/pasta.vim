@@ -49,19 +49,23 @@ function! s:SetupPasta()
     return
   endif
 
-  if maparg('p') ==# ''
-    nmap <buffer> p <Plug>AfterPasta
-    xmap <buffer> p <Plug>VisualPasta
-  endif
+  exe "nmap <buffer> " . g:pasta_paste_before_mapping . " <Plug>BeforePasta"
+  exe "xmap <buffer> " . g:pasta_paste_before_mapping . " <Plug>VisualPasta"
 
-  if maparg('P') ==# ''
-    nmap <buffer> P <Plug>BeforePasta
-    xmap <buffer> P <Plug>VisualPasta
-  endif
+  exe "nmap <buffer> " . g:pasta_paste_after_mapping . " <Plug>AfterPasta"
+  exe "xmap <buffer> " . g:pasta_paste_after_mapping . " <Plug>VisualPasta"
 endfunction
 
 if !exists("g:pasta_disabled_filetypes")
   let g:pasta_disabled_filetypes = ["python", "coffee", "markdown"]
+endif
+
+if !exists("g:pasta_paste_before_mapping")
+  let g:pasta_paste_before_mapping = 'P'
+endif
+
+if !exists("g:pasta_paste_after_mapping")
+  let g:pasta_paste_after_mapping = 'p'
 endif
 
 nnoremap <silent> <Plug>BeforePasta :<C-U>call <SID>NormalPasta('P', 'O')<CR>

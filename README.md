@@ -106,6 +106,12 @@ To white-list some filetypes put following in your .vimrc:
 
 *Note: if white list is defined no black list checking is performed.*
 
+If you don't want pasta to override default `p` and `P` mappings you can
+change it like this:
+
+    let g:pasta_paste_before_mapping = ',P'
+    let g:pasta_paste_after_mapping = ',p'
+
 ## Author
 
 Marcin Kulik (@sickill)

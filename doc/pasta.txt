@@ -13,6 +13,9 @@ Basically it opens new, properly indented line (with |o| or |O|) in the place
 you're pasting to then it pastes the text with |]p|. The result is nicely
 indented code with relative indentation between pasted lines preserved.
 
+See configuration section below for details on how to use different mapping
+than |p| and |P|.
+
 CONFIGURATION                                   *pasta-config*
 
 By default pasta is disabled for python, coffeescript and markdown because
@@ -31,6 +34,12 @@ To white-list some filetypes put following in your .vimrc: >
     let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 Note: if white list is defined no black list checking is performed.
+
+If you don't want pasta to override default |p| and |P| mappings you can
+change it like this: >
+
+    let g:pasta_paste_before_mapping = ',P'
+    let g:pasta_paste_after_mapping = ',p'
 
 ABOUT                                           *pasta-about*
 
