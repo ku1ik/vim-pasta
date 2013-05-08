@@ -89,9 +89,9 @@ Just paste as usual with `p` and `P`. Enjoy!
 
 ## Configuration
 
-By default pasta is disabled for python, coffeescript and markdown because for
-these types desired indentation for new lines can't be easily computed from
-existing code/text.
+By default pasta is disabled for python, coffeescript, markdown, yaml and slim
+because for these types desired indentation for new lines can't be easily
+computed from existing code/text.
 
 To change the list of filetypes for which pasta is enabled you can either
 use black-listing or white-listing.

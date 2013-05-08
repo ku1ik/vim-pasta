@@ -57,7 +57,7 @@ function! s:SetupPasta()
 endfunction
 
 if !exists("g:pasta_disabled_filetypes")
-  let g:pasta_disabled_filetypes = ["python", "coffee", "markdown"]
+  let g:pasta_disabled_filetypes = ["python", "coffee", "markdown", "yaml", "slim"]
 endif
 
 if !exists("g:pasta_paste_before_mapping")
