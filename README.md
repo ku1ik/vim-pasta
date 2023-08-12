@@ -76,12 +76,12 @@ contrary to above mapping.
 * With [pathogen.vim](https://github.com/tpope/vim-pathogen):
 
         cd ~/.vim/bundle
-        git clone git://github.com/sickill/vim-pasta.git
+        git clone git://github.com/ku1ik/vim-pasta.git
 
 * With [Vundle](https://github.com/gmarik/vundle):
 
         " .vimrc
-        Bundle 'sickill/vim-pasta'
+        Bundle 'ku1ik/vim-pasta'
 
 ## Usage
 
@@ -114,4 +114,4 @@ change it like this:
 
 ## Author
 
-Marcin Kulik (@sickill)
+Marcin Kulik (@ku1ik)
