@@ -10,6 +10,7 @@ let g:loaded_pasta = 1
 function! s:NormalPasta(p, o)
   if (getregtype() ==# "V")
     exe "normal! " . a:o . "\<space>\<bs>\<esc>" . v:count1 . '"' . v:register . ']p'
+	 exe "normal! =`]"
     " Save the `[ and `] marks (point to the last modification)
     let first = getpos("'[")
     let last  = getpos("']")
@@ -21,6 +22,7 @@ function! s:NormalPasta(p, o)
     call setpos("']", last)
   else
     exe "normal! " . v:count1 . '"' . v:register . a:p
+	 exe "normal! =`]"
   endif
 endfunction
 
